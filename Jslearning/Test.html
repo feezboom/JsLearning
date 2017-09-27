@@ -1,14 +1,73 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Test</title>
-    <script type="text/javascript" src="prototypes.js"></script>
-</head>
-<body>
-    <button onclick="test();">Test</button>
-</body>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Homepage</title>
+    <script src="prototypes.js"></script>
 
+</head>
+<body onload="">
+<h1> My page </h1>
+<div class="menu">
+    <a class="menuitem" href="index.html">Homepage</a>
+    <a class="menuitem" href="counter.html">Counter</a>
+    <span id="test1" class="menuitem" onclick="test1();">test1</span>
+    <span id="test2" class="menuitem" onclick="test2();">test2</span>
+    <span id="test3" class="menuitem" onclick="test3();">test3</span>
+    <span id="test4" class="menuitem" onclick="test4();">test4</span>
+</div>
+<h2> About </h2>
+<img class="content-pic" src="pic.jpg" />
+<div class="sidebar">
+    <p> Eta Carinae je velmi zářivý hvězdný hyperobr.
+        Odhady její hmotnosti se pohybují v rozsahu od 100 do 150 hmotností Slunce a její svítivost je přibližně 4 miliony zářivostí Slunce.
+        Jde o nejhmotnější hvězdu, která může být podrobně zkoumána, protože se nachází blízko a je velmi velká.
+        Několik dalších hvězd může být zářivějších nebo těžších, ale údaje o nich jsou méně spolehlivé,
+        což je potřeba mít na paměti při prohlížení seznamů nejzářivějších a nejtěžších hvězd. Například zpřesněné údaje o Pistolové hvězdě ji na seznamu výrazně posunuly dolů.
+        Eta Carinae má v roce 2006 nejvyšší potvrzenou zářivost, což dokládají údaje napříč širokým spektrem vlnových délek.
+        Hvězdy mající více než 80 hmotností Slunce vydávají více než milionkrát více světla než Slunce.
+</div>
+<script src="prototypes.js">
+    // Class creation.
+    function module() {
+        return {
+            'a': 1,
+            'click': function () {
+                alert('hello, stas');
+            }
+        };
+    }
+
+    function module1() {
+        this.a = 1;
+        this.click = function () {
+            alert('hello, stas1');
+        }
+
+    }
+
+    var click = function (alertText) {
+        alert(alertText);
+    };
+
+    function module2() {
+        this.a = 2
+    }
+
+    module2.prototype.onclick = function () {
+        alert('apple');
+    };
+
+    var mod = new module2();
+    document.getElementById('click_id').click = mod.click;
+
+
+
+</script>
+
+</body>
 
 
 </html>

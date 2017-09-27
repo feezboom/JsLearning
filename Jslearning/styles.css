@@ -1,0 +1,37 @@
+
+body {
+    background: #e0f0ff;
+
+}
+
+h1 { color: #ff6a00;
+    font-family: 'Comic Sans MS', serif }
+h2 { color: #ff6a00; }
+
+.sidebar {
+    float: right;
+    width: 450pt;
+    background: #00ff90;
+    padding: 10pt;
+    margin-right: 110pt;
+}
+p,li { font-family: 'Segoe UI'; font-size: 14pt; }
+
+.menu {
+    width: 90%; background: black;
+    padding: 10pt; margin: 10pt;
+}
+
+.menuitem {
+    color: whitesmoke; font-family: Arial Black;
+    background: #303030; padding: 10pt;
+}
+
+.menuitem:hover {
+    background: #606060;
+}
+
+.page-pic {
+    width: 1024pt;
+    height: 768pt;
+}

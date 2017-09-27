@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>A function is triggered when the user is pressing a key in the input field.</p>
+
+<input type="text" onkeypress="myFunction()">
+
+<div id="hi"> </div>
+
+<script>
+
+    var current_timeout;
+    var typing_text_set = false;
+
+    function myFunction()
+    {
+        if (typing_text_set === false)
+        {
+            document.getElementById("hi").innerHTML = "You're typing now...";
+            typing_text_set = true;
+        }
+
+        if (current_timeout !== undefined)
+        {
+            clearTimeout(current_timeout);
+        }
+
+        current_timeout = setTimeout(notifying_function, 250);
+
+    }
+
+    var notifying_function = function()
+    {
+        document.getElementById("hi").innerHTML = "You finished typing.";
+        typing_text_set = false;
+    }
+
+
+</script>
+
+</body>
+</html>
