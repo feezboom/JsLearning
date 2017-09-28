@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <title>CheckTyping closure</title>
     <script src="closure-library/closure/goog/base.js"></script>
+    <script>
+        goog.require('goog.events.KeyHandler');
+        goog.require('goog.events');
+    </script>
     <script src="CheckTyping.js"></script>
 </head>
 <body>
-<input id='input-field' type="text" title="inpuuuuuut">
+<input id='input-field' type="text" title="Type text here.">
 <div id="hi"> </div>
 <script>
     var element_inputField = document.getElementById('input-field');
-//    var keyHandler = new test.checktyping.CheckTyping(250);
-    test.checktyping.attach_checkTyping_handler(element_inputField, 250);
+    var keyHandler = new test.checktyping.TypingKeyHandler(element_inputField, 250);
+    keyHandler.attach_checkTyping_handler();
 </script>
 </body>
 </html>

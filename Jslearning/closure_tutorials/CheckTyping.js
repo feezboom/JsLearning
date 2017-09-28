@@ -1,54 +1,53 @@
 goog.require('goog.dom');
 goog.require('goog.events.EventType');
-goog.require('goog.events.KeyHandler');
 goog.provide('test.checktyping');
 
-// /**
-//  *
-//  * @constructor
-//  * @struct
-//  *
-//  */
-// test.checktyping.CheckTyping = function (pressTimeout)
-// {
 
-    test.checktyping.current_timeout = undefined;
-    test.checktyping.typing_text_set = false;
-    test.checktyping.press_timeout = 250;
+/**
+ *
+ * @constructor
+ * @struct
+ *
+ */
+test.checktyping.TypingKeyHandler = function(element, pressTimeout)
+{
 
-//
-// };
+    // Super class constructor.
+    goog.events.KeyHandler.call(this, element);
+    this.current_timeout = undefined;
+    this.typing_text_set = false;
+    this.press_timeout = pressTimeout;
 
-test.checktyping/*.CheckTyping.prototype*/.key_pressed_handler = function (key)
+};
+
+goog.inherits(test.checktyping.TypingKeyHandler, goog.events.KeyHandler);
+
+test.checktyping.TypingKeyHandler.prototype.key_pressed_handler = function (key)
 {
     console.log(key.charCode + ' pressed');
-    if (test.checktyping.typing_text_set === false)
+    if (this.typing_text_set === false)
     {
         goog.dom.getDocument().getElementById('hi').innerHTML = "You're typing now...";
-        test.checktyping.typing_text_set = true;
+        this.typing_text_set = true;
     }
 
-    if (test.checktyping.current_timeout !== undefined)
+    if (this.current_timeout !== undefined)
     {
-        clearTimeout(test.checktyping.current_timeout);
+        clearTimeout(this.current_timeout);
     }
 
-    test.checktyping.current_timeout = setTimeout(test.checktyping.finished_typing_notifier,
-        test.checktyping.press_timeout);
+    this.current_timeout = setTimeout(this.finished_typing_notifier, this.press_timeout, this);
 };
 
 
-test.checktyping/*.CheckTyping.prototype*/.attach_checkTyping_handler = function (element,
-                                                                                  press_timeout)
+test.checktyping.TypingKeyHandler.prototype.attach_checkTyping_handler = function ()
 {
-    var keyHandler = new goog.events.KeyHandler(element);
-    test.checktyping.press_timeout = press_timeout;
-    goog.events.listen(keyHandler, goog.events.KeyHandler.EventType.KEY,
-        test.checktyping.key_pressed_handler);
+    goog.events.listen(this, goog.events.KeyHandler.EventType.KEY, this.key_pressed_handler);
 };
 
-test.checktyping/*.CheckTyping.prototype*/.finished_typing_notifier = function ()
+test.checktyping.TypingKeyHandler.prototype.finished_typing_notifier = function (context)
 {
     goog.dom.getDocument().getElementById('hi').innerHTML = "You finished typing.";
-    test.checktyping.typing_text_set = false;
+    context.typing_text_set = false;
 };
+
